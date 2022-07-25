@@ -5,7 +5,8 @@ import { LocationContext } from "../context/LocationContext";
 export default function useAxiosLoc() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const { setLocation, location } = useContext(LocationContext);
+  const { setLocation, location, setLatitude, setLongitude } =
+    useContext(LocationContext);
   const axios = require("axios");
   const baseUrl =
     "https://api.myptv.com/geocoding/v1/locations/by-text?searchText=";
@@ -28,6 +29,9 @@ export default function useAxiosLoc() {
             longitude: val.referencePosition.longitude,
           }))
         );
+        setLatitude(data[0].latitude);
+        setLongitude(data[0].longitude);
+        console.log(data);
       } catch (e) {
         console.log(e);
         setError(e);

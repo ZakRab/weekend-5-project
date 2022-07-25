@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { LocationProvider } from "./context/LocationContext";
+import { SunProvider } from "./context/SunContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <LocationProvider>
-    <App />
-  </LocationProvider>
+  <SunProvider>
+    <LocationProvider>
+      <App />
+    </LocationProvider>
+  </SunProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
